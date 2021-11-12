@@ -1,0 +1,51 @@
+{
+	"name": "turn-and-learn-back",
+	"version": "1.0.0",
+	"description": "A web application for learning English for Russian speakers",
+	"main": "src/app.js",
+	"scripts": {
+		"start": "cross-env NODE_ENV=production node src/app.js",
+		"server": "nodemon src/app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DuckDeveloper/turn-and-learn-back.git"
+	},
+	"keywords": [
+		"Express.js", "MongoDB"
+	],
+	"prettier": {
+		"tabWidth": 4,
+		"bracketSpacing": true,
+		"useTabs": false,
+		"endOfLine": "auto",
+		"singleQuote": true,
+		"printWidth": 120,
+		"semi": false,
+		"jsxSingleQuote": false,
+		"trailingComma": "all"
+	},
+	"author": "Vadim Sabirov/DuckDeveloper",
+	"license": "ISC",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"config": "^3.3.6",
+		"cors": "^2.8.5",
+		"express": "^4.17.1",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^5.12.3"
+	},
+	"bugs": {
+		"url": "https://github.com/DuckDeveloper/turn-and-learn-back/issues"
+	},
+	"homepage": "https://github.com/DuckDeveloper/turn-and-learn-back#readme",
+	"devDependencies": {
+		"cross-env": "^7.0.3",
+		"eslint": "^7.32.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-import": "^2.25.3",
+		"eslint-plugin-prettier": "^4.0.0",
+		"prettier": "^2.4.1"
+	}
+}
