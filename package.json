@@ -12,7 +12,8 @@
 		"url": "git+https://github.com/DuckDeveloper/turn-and-learn-back.git"
 	},
 	"keywords": [
-		"Express.js", "MongoDB"
+		"Express.js",
+		"MongoDB"
 	],
 	"prettier": {
 		"tabWidth": 4,
@@ -46,6 +47,7 @@
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-import": "^2.25.3",
 		"eslint-plugin-prettier": "^4.0.0",
+		"nodemon": "^2.0.15",
 		"prettier": "^2.4.1"
 	}
 }
