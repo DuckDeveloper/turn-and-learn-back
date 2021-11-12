@@ -1,12 +1,12 @@
 const { Schema, model, Types } = require('mongoose')
 
 const schema = new Schema({
-    name: { type: String, required: true },
+    login: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     avatar: { type: String, required: true },
-    theme: { type: String, default: 'light', required: true },
-    cardsList: { type: Types.objectId, ref: 'CardsList', required: true },
-    foldersList: { type: Types.objectId, ref: 'FoldersList', required: true },
+    theme: { type: String, default: 'light' },
+    cardsListId: { type: Types.ObjectId, ref: 'CardsList', required: true },
+    foldersListId: { type: Types.ObjectId, ref: 'FoldersList', required: true },
 })
 
 module.exports = model('User', schema)
