@@ -7,9 +7,9 @@ const createRouter = require('./helpers/createRouter')
 
 const app = express()
 
-app.use(express.json({extended: true}))
+app.use(express.json({ extended: true }))
 app.use(cors({
-    origin: config.get('MAIN_URL')
+    origin: config.get('MAIN_URL'),
 }))
 
 createRouter(app)
@@ -21,11 +21,11 @@ const start = async () => {
         await mongoose.connect(config.get('MONGO_URI'), {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useCreateIndex: true
+            useCreateIndex: true,
         })
 
-        app.listen(PORT, () => console.log(`App has been started on port ${PORT}...`))
-    } catch (e) {
+        app.listen(PORT, () => console.log(`App has been started on port ${ PORT }...`))
+    } catch(e) {
         process.exit(1)
     }
 }

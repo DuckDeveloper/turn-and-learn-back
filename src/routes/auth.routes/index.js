@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const register = require('./register')
+const authorization = require('./authorization')
 
 const {
     checkUserExists,
@@ -8,6 +9,14 @@ const {
 } = require('../../middlewares/auth.middlewares')
 
 const router = Router()
+
+router.post(
+    '/authorization',
+    [
+        checkUserExists,
+    ],
+    authorization,
+)
 
 router.post(
     '/register',
