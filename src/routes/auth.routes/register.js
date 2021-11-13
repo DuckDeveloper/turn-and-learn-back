@@ -6,7 +6,7 @@ const CardsList = require('../../models/CardsList')
 const Folder = require('../../models/Folder')
 const FoldersList = require('../../models/FoldersList')
 
-const messages = require('./messages.json')
+const messages = require('../messages.json')
 const getRandomValuesFromArray = require('../../helpers/getRandomValuesFromArray')
 
 const cardsPattern = require('../../patterns/cards.patterns')

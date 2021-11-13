@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const config = require('config')
 
-const messages = require('./messages.json')
+const messages = require('../messages.json')
 
 module.exports = async (req, res) => {
     try {
@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
             { expiresIn: '30d' },
         )
 
-        return res.status(200).json({ message: messages.success.SUCCESSFUL_AUTHORIZATION })
+        return res.status(200).json({ message: messages.success.SUCCESSFUL_AUTHORIZATION, token })
     } catch(e) {
         return res.status(500).json({ message: messages.error.RANDOM_ERROR, e })
     }
