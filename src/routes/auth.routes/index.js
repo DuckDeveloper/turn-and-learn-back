@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const register = require('./register')
+const registration = require('./registration')
 const authorizationByPassword = require('./authorizationByPassword')
 const authorizationByJwt = require('./authorizationByJwt')
 
@@ -15,7 +15,7 @@ const {
 const router = Router()
 
 router.post(
-    '/verify',
+    '/verification',
     [
         checkJwtExist,
         checkJwtValid,
@@ -33,13 +33,13 @@ router.post(
 )
 
 router.post(
-    '/register',
+    '/registration',
     [
         checkUserExists,
         checkLoginLengthValid,
         checkPasswordLengthValid,
     ],
-    register,
+    registration,
 )
 
 module.exports = router

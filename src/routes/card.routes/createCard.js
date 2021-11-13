@@ -10,6 +10,7 @@ module.exports = async (req, res) => {
         const { ru, en } = req.body
 
         const cardsList = await CardsList.findById(user.cardsListId)
+        if (!cardsList) throw new Error()
 
         const card = new Card({
             entityId: await getUniqueIdForDbEntity(Card),
