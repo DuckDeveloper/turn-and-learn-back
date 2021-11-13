@@ -1,6 +1,7 @@
 const { Router } = require('express')
-
 const createCard = require('./createCard')
+const editCard = require('./editCard')
+
 const {
     checkJwtExist,
     checkJwtValid,
@@ -17,6 +18,16 @@ router.post(
         cancelAuthDueToJwtNotValid,
     ],
     createCard,
+)
+
+router.put(
+    '/',
+    [
+        checkJwtExist,
+        checkJwtValid,
+        cancelAuthDueToJwtNotValid,
+    ],
+    editCard,
 )
 
 module.exports = router

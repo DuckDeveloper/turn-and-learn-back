@@ -8,6 +8,7 @@ const FoldersList = require('../../models/FoldersList')
 
 const messages = require('../messages.json')
 const getRandomValuesFromArray = require('../../helpers/getRandomValuesFromArray')
+const getUniqueIdForDbEntity = require('../../helpers/getUniqueIdForDbEntity')
 
 const {
     getRandomAvatarPattern,
@@ -44,6 +45,7 @@ module.exports = async (req, res) => {
             cardsId: [],
         })
         const folder = new Folder({
+            entityId: await getUniqueIdForDbEntity(Folder),
             name: folderTemplateName,
             cardsId: [],
         })
@@ -53,6 +55,7 @@ module.exports = async (req, res) => {
 
         await Promise.all(cardsTemplate.map(async ({ en, ru }) => {
             const card = new Card({
+                entityId: await getUniqueIdForDbEntity(Card),
                 en,
                 ru,
             })
