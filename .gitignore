@@ -1,5 +1,5 @@
 /node_modules
 /.idea
-/src/files/*
+/src/files/avatars/*
 !/src/files/avatars/.gitkeep
 !/src/files/defaultAvatars
