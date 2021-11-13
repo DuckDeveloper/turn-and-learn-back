@@ -9,14 +9,17 @@ const FoldersList = require('../../models/FoldersList')
 const messages = require('../messages.json')
 const getRandomValuesFromArray = require('../../helpers/getRandomValuesFromArray')
 
-const cardsPattern = require('../../patterns/cards.patterns')
-const avatarPattern = require('../../patterns/avatars.patterns')
-const folderTemplateNamesPattern = require('../../patterns/folderTemplateNames.patterns')
+const {
+    getRandomAvatarPattern,
+    getRandomCardsPattern,
+    getRandomFolderTemplateNamePattern,
+} = require('../../getters')
 
 
 module.exports = async (req, res) => {
     try {
-        const { login, password, passwordLengthIsValid, userIsExist, loginLengthIsValid } = req.body
+        const { passwordLengthIsValid, userIsExist, loginLengthIsValid } = req
+        const { login, password } = req.body
 
         if (!login) {
             return res.status(400).json({ message: messages.error.LOGIN_FIELD_IS_EMPTY })
@@ -33,9 +36,9 @@ module.exports = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 12)
 
-        const cardsTemplate = getRandomValuesFromArray(cardsPattern, 6)
-        const avatarTemplate = getRandomValuesFromArray(avatarPattern, 1)[0]
-        const folderTemplateName = getRandomValuesFromArray(folderTemplateNamesPattern, 1)[0]
+        const cardsTemplate = getRandomCardsPattern()
+        const avatarTemplate = getRandomAvatarPattern()
+        const folderTemplateName = getRandomFolderTemplateNamePattern()
 
         const cardsList = new CardsList({
             cardsId: [],
@@ -78,6 +81,6 @@ module.exports = async (req, res) => {
 
         return res.status(200).json({ message: messages.success.SUCCESSFUL_REGISTRATION })
     } catch(e) {
-        return res.status(500).json({ message: messages.error.RANDOM_ERROR, e })
+        return res.status(500).json({ message: messages.error.RANDOM_ERROR, e: e.message })
     }
 }

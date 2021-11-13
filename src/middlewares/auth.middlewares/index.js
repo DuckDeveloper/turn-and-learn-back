@@ -3,6 +3,7 @@ const checkPasswordLengthValid = require('./checkPasswordLengthValid.middleware'
 const checkLoginLengthValid = require('./checkLoginLengthValid.middleware')
 const checkJwtValid = require('./checkJwtValid.middleware')
 const checkJwtExist = require('./checkJwtExist.middleware')
+const cancelAuthDueToJwtNotValid = require('./cancelAuthDueToJwtNotValid.middleware')
 
 module.exports = {
     checkUserExists,
@@ -10,4 +11,5 @@ module.exports = {
     checkLoginLengthValid,
     checkJwtValid,
     checkJwtExist,
+    cancelAuthDueToJwtNotValid,
 }

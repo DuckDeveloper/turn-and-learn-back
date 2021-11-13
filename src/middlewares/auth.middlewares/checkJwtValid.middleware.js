@@ -5,7 +5,7 @@ const User = require('../../models/User')
 
 module.exports = async (req, res, next) => {
     try {
-        const { token, tokenIsExist } = req.body
+        const { token, tokenIsExist } = req
         if (!tokenIsExist) throw new Error()
 
         const { userId } = jwt.verify(token, config.get('JWT_SECRET'))
@@ -13,10 +13,10 @@ module.exports = async (req, res, next) => {
         const user = await User.findById(userId)
         if (!user) throw new Error()
 
-        req.body.user = user
-        req.body.tokenIsValid = true
+        req.user = user
+        req.tokenIsValid = true
     } catch(e) {
-        req.body.tokenIsValid = false
+        req.tokenIsValid = false
     } finally {
         next()
     }

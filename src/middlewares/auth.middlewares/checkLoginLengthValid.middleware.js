@@ -5,9 +5,9 @@ module.exports = async (req, res, next) => {
 
         if (login.trim().length < 3 || login.trim().length > 11) throw new Error()
 
-        req.body.loginLengthIsValid = true
+        req.loginLengthIsValid = true
     } catch(e) {
-        req.body.loginLengthIsValid = false
+        req.loginLengthIsValid = false
     } finally {
         next()
     }

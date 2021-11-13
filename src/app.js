@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const config = require('config')
+const path = require('path')
 
 const createRouter = require('./helpers/createRouter')
 
@@ -11,6 +12,8 @@ app.use(express.json({ extended: true }))
 app.use(cors({
     origin: config.get('MAIN_URL'),
 }))
+
+app.use('/files', express.static(path.resolve(__dirname, 'files')))
 
 createRouter(app)
 
