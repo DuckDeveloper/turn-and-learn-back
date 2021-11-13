@@ -2,6 +2,7 @@ const Card = require('../../models/Card')
 const CardsList = require('../../models/CardsList')
 
 const messages = require('../messages.json')
+const getUniqueIdForDbEntity = require('../../helpers/getUniqueIdForDbEntity')
 
 module.exports = async (req, res) => {
     try {
@@ -11,6 +12,7 @@ module.exports = async (req, res) => {
         const cardsList = await CardsList.findById(user.cardsListId)
 
         const card = new Card({
+            entityId: await getUniqueIdForDbEntity(Card),
             ru,
             en,
         })
