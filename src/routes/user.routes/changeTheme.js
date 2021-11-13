@@ -1,6 +1,3 @@
-const jwt = require('jsonwebtoken')
-const config = require('config')
-
 const messages = require('../messages.json')
 
 module.exports = async (req, res) => {
@@ -11,11 +8,10 @@ module.exports = async (req, res) => {
             return res.status(401).json({})
         }
 
-        const newToken = jwt.sign(
-            { userId: user.id },
-            config.get('JWT_SECRET'),
-            { expiresIn: '30d' },
-        )
+        user.theme = user.theme === 'light'
+                     ? 'dark'
+                     : 'light'
+        await user.save()
 
         return res.status(200).json({})
     } catch(e) {
