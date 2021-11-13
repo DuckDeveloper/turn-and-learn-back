@@ -1,15 +1,14 @@
-const messages = require('../messages.json')
+const config = require('config')
 
-const oppositeThemes = {
-    light: 'dark',
-    dark: 'light',
-}
+const messages = require('../messages.json')
 
 module.exports = async (req, res) => {
     try {
-        const { user } = req
+        const { file, user } = req
 
-        user.theme = oppositeThemes[user.theme] || 'light'
+        const filepath = `${config.get('AVATARS_STORAGE')}/${file.filename}`
+
+        user.avatar = filepath
         await user.save()
 
         return res.status(200).json({})

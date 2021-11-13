@@ -9,6 +9,7 @@ const {
     checkPasswordLengthValid,
     checkJwtValid,
     checkJwtExist,
+    cancelAuthDueToJwtNotValid,
 } = require('../../middlewares/auth.middlewares')
 
 const router = Router()
@@ -18,6 +19,7 @@ router.post(
     [
         checkJwtExist,
         checkJwtValid,
+        cancelAuthDueToJwtNotValid,
     ],
     authorizationByJwt,
 )

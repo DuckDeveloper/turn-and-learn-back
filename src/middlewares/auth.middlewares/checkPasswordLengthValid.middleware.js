@@ -5,9 +5,9 @@ module.exports = async (req, res, next) => {
 
         if (password.trim().length <= 8) throw new Error()
 
-        req.body.passwordLengthIsValid = true
+        req.passwordLengthIsValid = true
     } catch(e) {
-        req.body.passwordLengthIsValid = false
+        req.passwordLengthIsValid = false
     } finally {
         next()
     }

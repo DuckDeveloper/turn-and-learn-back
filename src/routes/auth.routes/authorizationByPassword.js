@@ -6,7 +6,8 @@ const messages = require('../messages.json')
 
 module.exports = async (req, res) => {
     try {
-        const { login, password, user, userIsExist } = req.body
+        const { user, userIsExist } = req
+        const { login, password } = req.body
 
         if (!userIsExist) {
             return res.status(400).json({ message: messages.error.USER_IS_NOT_EXIST })
@@ -26,6 +27,6 @@ module.exports = async (req, res) => {
 
         return res.status(200).json({ message: messages.success.SUCCESSFUL_AUTHORIZATION, token })
     } catch(e) {
-        return res.status(500).json({ message: messages.error.RANDOM_ERROR, e })
+        return res.status(500).json({ message: messages.error.RANDOM_ERROR, e: e.message })
     }
 }

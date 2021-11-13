@@ -5,11 +5,7 @@ const messages = require('../messages.json')
 
 module.exports = async (req, res) => {
     try {
-        const { user, tokenIsValid } = req.body
-
-        if (!tokenIsValid) {
-            return res.status(401).json({})
-        }
+        const { user } = req
 
         const newToken = jwt.sign(
             { userId: user.id },
@@ -19,6 +15,6 @@ module.exports = async (req, res) => {
 
         return res.status(200).json({})
     } catch(e) {
-        return res.status(500).json({ message: messages.error.RANDOM_ERROR, e })
+        return res.status(500).json({ message: messages.error.RANDOM_ERROR, e: e.message })
     }
 }

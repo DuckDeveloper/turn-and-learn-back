@@ -7,10 +7,10 @@ module.exports = async (req, res, next) => {
         const user = await User.findOne({ login })
         if (!user) throw new Error()
 
-        req.body.user = user
-        req.body.userIsExist = true
+        req.user = user
+        req.userIsExist = true
     } catch(e) {
-        req.body.userIsExist = false
+        req.userIsExist = false
     } finally {
         next()
     }

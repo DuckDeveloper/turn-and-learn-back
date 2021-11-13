@@ -4,10 +4,10 @@ module.exports = async (req, res, next) => {
 
         if (!token) throw new Error()
 
-        req.body.token = token
-        req.body.tokenIsExist = true
+        req.token = token
+        req.tokenIsExist = true
     } catch(e) {
-        req.body.tokenIsExist = false
+        req.tokenIsExist = false
     } finally {
         next()
     }
