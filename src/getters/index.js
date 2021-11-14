@@ -3,6 +3,7 @@ const getRandomCardsPattern = require('./getRandomCardsPattern')
 const getRandomFolderTemplateNamePattern = require('./getRandomFolderTemplateNamePattern')
 const getCardDataByIdAsync = require('./getCardDataByIdAsync')
 const getFolderDataByIdAsync = require('./getFolderDataByIdAsync')
+const getEntityCardsByLimitAsync = require('./getEntityCardsByLimitAsync')
 
 module.exports = {
     getRandomAvatarPattern,
@@ -10,4 +11,5 @@ module.exports = {
     getRandomFolderTemplateNamePattern,
     getCardDataByIdAsync,
     getFolderDataByIdAsync,
+    getEntityCardsByLimitAsync,
 }
