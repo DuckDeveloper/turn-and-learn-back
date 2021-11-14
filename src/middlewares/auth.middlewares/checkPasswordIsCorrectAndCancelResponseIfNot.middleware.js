@@ -1,5 +1,7 @@
 const bcrypt = require('bcryptjs')
 
+const messages = require('../../message.constants.json')
+
 module.exports = async (req, res, next) => {
     try {
         const { user } = req
@@ -10,6 +12,6 @@ module.exports = async (req, res, next) => {
 
         return next()
     } catch(e) {
-        return res.status(400).json({})
+        return res.status(400).json({message: messages.error.INVALID_PASSWORD})
     }
 }
