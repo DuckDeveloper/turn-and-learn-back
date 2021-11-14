@@ -1,5 +1,3 @@
-const Card = require('../../models/Card')
-const CardsList = require('../../models/CardsList')
 const Folder = require('../../models/Folder')
 const FoldersList = require('../../models/FoldersList')
 
@@ -7,9 +5,8 @@ const messages = require('../../message.constants.json')
 
 module.exports = async (req, res) => {
     try {
-        const { user, card } = req
+        const { user, card, cardsList } = req
 
-        const cardsList = await CardsList.findById(user.cardsListId)
         const foldersList = await FoldersList.findById(user.foldersListId)
 
         cardsList.cardsId = cardsList.cardsId.filter(cId => String(cId) !== String(card.id))

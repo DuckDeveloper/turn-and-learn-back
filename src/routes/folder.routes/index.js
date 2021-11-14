@@ -2,6 +2,7 @@ const { Router } = require('express')
 const createFolder = require('./createFolder')
 const editFolderName = require('./editFolderName')
 const addCardsToFolder = require('./addCardsToFolder')
+const deleteFolder = require('./deleteFolder')
 
 const {
     checkJwtIsValidAndCancelResponseIfNot,
@@ -10,6 +11,7 @@ const {
     checkFolderNameIsValidAndCancelResponseIfNot,
     checkFoldersAmountIsValidAndCancelResponseIfNot,
     checkFolderIsExistAndCancelResponseIfNot,
+    checkUserHasAccessToFolderAndCancelResponseIfNot,
     filterCardsByValidCardsId,
     filterCardsByUnique,
 } = require('../../middlewares/folder.middlewares')
@@ -32,6 +34,7 @@ router.put(
         checkJwtIsValidAndCancelResponseIfNot,
         checkFolderNameIsValidAndCancelResponseIfNot,
         checkFolderIsExistAndCancelResponseIfNot,
+        checkUserHasAccessToFolderAndCancelResponseIfNot,
     ],
     editFolderName,
 )
@@ -41,10 +44,21 @@ router.put(
     [
         checkJwtIsValidAndCancelResponseIfNot,
         checkFolderIsExistAndCancelResponseIfNot,
+        checkUserHasAccessToFolderAndCancelResponseIfNot,
         filterCardsByValidCardsId,
         filterCardsByUnique,
     ],
     addCardsToFolder,
+)
+
+router.delete(
+    '/',
+    [
+        checkJwtIsValidAndCancelResponseIfNot,
+        checkFolderIsExistAndCancelResponseIfNot,
+        checkUserHasAccessToFolderAndCancelResponseIfNot,
+    ],
+    deleteFolder,
 )
 
 module.exports = router

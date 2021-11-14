@@ -2,7 +2,7 @@ const Folder = require('../../models/Folder')
 
 module.exports = async (req, res, next) => {
     try {
-        const { entityId } = req.body
+        const { id: entityId } = req.body
 
         const folder = await Folder.findOne({ entityId })
         if (!folder) throw new Error()
