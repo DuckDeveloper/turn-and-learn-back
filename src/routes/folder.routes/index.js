@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const createFolder = require('./createFolder')
 const editFolderName = require('./editFolderName')
+const addCardsToFolder = require('./addCardsToFolder')
 
 const {
     checkJwtIsValidAndCancelResponseIfNot,
@@ -9,6 +10,8 @@ const {
     checkFolderNameIsValidAndCancelResponseIfNot,
     checkFoldersAmountIsValidAndCancelResponseIfNot,
     checkFolderIsExistAndCancelResponseIfNot,
+    filterCardsByValidCardsId,
+    filterCardsByUnique,
 } = require('../../middlewares/folder.middlewares')
 
 const router = Router()
@@ -31,6 +34,17 @@ router.put(
         checkFolderIsExistAndCancelResponseIfNot,
     ],
     editFolderName,
+)
+
+router.put(
+    '/add',
+    [
+        checkJwtIsValidAndCancelResponseIfNot,
+        checkFolderIsExistAndCancelResponseIfNot,
+        filterCardsByValidCardsId,
+        filterCardsByUnique,
+    ],
+    addCardsToFolder,
 )
 
 module.exports = router
