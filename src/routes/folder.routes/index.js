@@ -2,14 +2,11 @@ const { Router } = require('express')
 const createFolder = require('./createFolder')
 
 const {
-    checkJwtIsValid,
-    cancelResponseIfJwtIsNotValid,
+    checkJwtIsValidAndCancelResponseIfNot,
 } = require('../../middlewares/auth.middlewares')
 const {
-    checkFoldersAmountIsValid,
-    cancelResponseIfFolderAmountIsNotValid,
-    checkFolderNameIsValid,
-    cancelResponseIfFolderNameIsNotValid,
+    checkFolderNameIsValidAndCancelResponseIfNot,
+    checkFoldersAmountIsValidAndCancelResponseIfNot,
 } = require('../../middlewares/folder.middlewares')
 
 const router = Router()
@@ -17,12 +14,9 @@ const router = Router()
 router.post(
     '/',
     [
-        checkJwtIsValid,
-        cancelResponseIfJwtIsNotValid,
-        checkFoldersAmountIsValid,
-        cancelResponseIfFolderAmountIsNotValid,
-        checkFolderNameIsValid,
-        cancelResponseIfFolderNameIsNotValid,
+        checkJwtIsValidAndCancelResponseIfNot,
+        checkFoldersAmountIsValidAndCancelResponseIfNot,
+        checkFolderNameIsValidAndCancelResponseIfNot,
     ],
     createFolder,
 )

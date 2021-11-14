@@ -1,6 +1,6 @@
 const FoldersList = require('../../models/FoldersList')
 
-const {MAX_FOLDERS_AMOUNT} = require('../../project.config.json')
+const { MAX_FOLDERS_AMOUNT } = require('../../project.config.json')
 
 module.exports = async (req, res, next) => {
     try {
@@ -10,10 +10,8 @@ module.exports = async (req, res, next) => {
 
         if (foldersList.foldersId.length >= MAX_FOLDERS_AMOUNT) throw new Error()
 
-        req.foldersAmountIsValid = true
+        return next()
     } catch(e) {
-        req.foldersAmountIsValid = false
-    } finally {
-        next()
+        return res.status(400).json({})
     }
 }

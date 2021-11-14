@@ -8,10 +8,8 @@ module.exports = async (req, res, next) => {
         if (!card) throw new Error()
 
         req.card = card
-        req.cardIsExist = true
+        return next()
     } catch(e) {
-        req.cardIsExist = false
-    } finally {
-        next()
+        return res.status(400).json({})
     }
 }

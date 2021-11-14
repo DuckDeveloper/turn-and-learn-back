@@ -1,10 +1,13 @@
+const User = require('../../models/User')
+
 const messages = require('../../message.constants.json')
 
 module.exports = async (req, res, next) => {
     try {
-        const { userIsExist } = req
+        const { login } = req.body
 
-        if (userIsExist) throw new Error()
+        const user = await User.findOne({ login })
+        if (user) throw new Error()
 
         return next()
     } catch(e) {

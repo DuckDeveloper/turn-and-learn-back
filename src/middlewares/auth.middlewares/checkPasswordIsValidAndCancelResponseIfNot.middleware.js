@@ -5,10 +5,8 @@ module.exports = async (req, res, next) => {
 
         if (password.trim().length <= 8) throw new Error()
 
-        req.passwordIsValid = true
+        return next()
     } catch(e) {
-        req.passwordIsValid = false
-    } finally {
-        next()
+        return res.status(400).json({})
     }
 }

@@ -1,13 +1,8 @@
-const checkFoldersAmountIsValid = require('./checkFoldersAmountIsValid.middleware')
-const cancelResponseIfFolderAmountIsNotValid = require('./cancelResponseIfFolderAmountIsNotValid.middleware')
-const checkFolderNameIsValid = require('./checkFolderNameIsValid.middleware')
-const cancelResponseIfFolderNameIsNotValid = require('./cancelResponseIfFolderNameIsNotValid.middleware')
+const checkFoldersAmountIsValidAndCancelResponseIfNot = require('./checkFoldersAmountIsValidAndCancelResponseIfNot.middleware')
+const checkFolderNameIsValidAndCancelResponseIfNot = require('./checkFolderNameIsValidAndCancelResponseIfNot.middleware')
 
 
 module.exports = {
-    checkFoldersAmountIsValid,
-    cancelResponseIfFolderAmountIsNotValid,
-
-    checkFolderNameIsValid,
-    cancelResponseIfFolderNameIsNotValid,
+    checkFoldersAmountIsValidAndCancelResponseIfNot,
+    checkFolderNameIsValidAndCancelResponseIfNot,
 }
