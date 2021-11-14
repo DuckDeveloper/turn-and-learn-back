@@ -9,7 +9,7 @@ const {
 } = require('../../middlewares/auth.middlewares')
 const {
     checkCardIsExistAndCancelResponseIfNot,
-    checkContentFieldIsEmptyAndCancelResponseIfNot,
+    checkContentFieldsIsValidAndCancelResponseIfNot,
     checkUserHasAccessToCardAndCancelResponseIfNot,
     checkLimitAndPageParamsIsValidAndCancelResponseIfNot,
 } = require('../../middlewares/card.middlewares')
@@ -29,7 +29,7 @@ router.post(
     '/',
     [
         checkJwtIsValidAndCancelResponseIfNot,
-        checkContentFieldIsEmptyAndCancelResponseIfNot,
+        checkContentFieldsIsValidAndCancelResponseIfNot,
     ],
     createCard,
 )
@@ -38,7 +38,7 @@ router.put(
     '/',
     [
         checkJwtIsValidAndCancelResponseIfNot,
-        checkContentFieldIsEmptyAndCancelResponseIfNot,
+        checkContentFieldsIsValidAndCancelResponseIfNot,
         checkCardIsExistAndCancelResponseIfNot,
         checkUserHasAccessToCardAndCancelResponseIfNot,
     ],
