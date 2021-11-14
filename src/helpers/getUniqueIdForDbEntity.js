@@ -5,7 +5,6 @@ const getUniqueIdForDbEntity = async (entityModel) => {
         const isRepeatableId = Boolean(await entityModel.findOne({ entityId }))
 
         if (!isRepeatableId) {
-            console.log(entityId)
             return entityId
         }
 

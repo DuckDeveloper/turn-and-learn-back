@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const getAllUsersFolders = require('./getAllUsersFolders')
+const getFolderCardsByFolderId = require('./getFolderCardsByLimit')
 const createFolder = require('./createFolder')
 const editFolderName = require('./editFolderName')
 const addCardsToFolder = require('./addCardsToFolder')
@@ -17,7 +18,12 @@ const {
     filterCardsByUnique,
 } = require('../../middlewares/folder.middlewares')
 
+const {
+    checkLimitAndPageParamsIsValidAndCancelResponseIfNot,
+} = require('../../middlewares/card.middlewares')
+
 const router = Router()
+
 
 router.get(
     '/',
@@ -25,6 +31,17 @@ router.get(
         checkJwtIsValidAndCancelResponseIfNot,
     ],
     getAllUsersFolders,
+)
+
+router.get(
+    '/:id',
+    [
+        checkJwtIsValidAndCancelResponseIfNot,
+        checkFolderIsExistAndCancelResponseIfNot,
+        checkUserHasAccessToFolderAndCancelResponseIfNot,
+        checkLimitAndPageParamsIsValidAndCancelResponseIfNot,
+    ],
+    getFolderCardsByFolderId,
 )
 
 router.post(

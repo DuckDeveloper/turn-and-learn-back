@@ -1,18 +1,15 @@
-const CardsList = require('../../models/CardsList')
 const { getEntityCardsByLimitAsync } = require('../../getters')
 
 const messages = require('../../message.constants.json')
 
 module.exports = async (req, res) => {
     try {
-        const { user, limitCardsOfPage, pageNumber } = req
+        const { folder, pageNumber, limitCardsOfPage } = req
 
-        const cardsList = await CardsList.findById(user.cardsListId)
-
-        const neededCards = await getEntityCardsByLimitAsync(cardsList, { limitCardsOfPage, pageNumber })
+        const neededCards = await getEntityCardsByLimitAsync(folder, { pageNumber, limitCardsOfPage })
 
         const headers = {
-            'Total-Cards-Amount': cardsList.cardsId.length,
+            'Total-Cards-Amount': folder.cardsId.length,
         }
         res.set(headers)
 
