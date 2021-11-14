@@ -6,7 +6,7 @@ const CardsList = require('../../models/CardsList')
 const Folder = require('../../models/Folder')
 const FoldersList = require('../../models/FoldersList')
 
-const messages = require('../messages.json')
+const messages = require('../../message.constants.json')
 const getRandomValuesFromArray = require('../../helpers/getRandomValuesFromArray')
 const getUniqueIdForDbEntity = require('../../helpers/getUniqueIdForDbEntity')
 
@@ -19,21 +19,7 @@ const {
 
 module.exports = async (req, res) => {
     try {
-        const { passwordLengthIsValid, userIsExist, loginLengthIsValid } = req
         const { login, password } = req.body
-
-        if (!login) {
-            return res.status(400).json({ message: messages.error.LOGIN_FIELD_IS_EMPTY })
-        }
-        if (userIsExist) {
-            return res.status(400).json({ message: messages.error.USER_IS_EXIST })
-        }
-        if (!loginLengthIsValid) {
-            return res.status(400).json({ message: messages.error.LOGIN_LENGTH_IS_NOT_VALID })
-        }
-        if (!passwordLengthIsValid) {
-            return res.status(400).json({ message: messages.error.PASSWORD_LENGTH_IS_NOT_VALID })
-        }
 
         const hashedPassword = await bcrypt.hash(password, 12)
 
@@ -82,7 +68,7 @@ module.exports = async (req, res) => {
         })
         await user.save()
 
-        return res.status(200).json({ message: messages.success.SUCCESSFUL_REGISTRATION })
+        return res.status(200).json({})
     } catch(e) {
         return res.status(500).json({ message: messages.error.RANDOM_ERROR, e: e.message })
     }

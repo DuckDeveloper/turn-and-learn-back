@@ -3,21 +3,14 @@ const CardsList = require('../../models/CardsList')
 const Folder = require('../../models/Folder')
 const FoldersList = require('../../models/FoldersList')
 
-const messages = require('../messages.json')
+const messages = require('../../message.constants.json')
 
 module.exports = async (req, res) => {
     try {
-        const { user } = req
-        const { entityId } = req.body
-
-        const card = await Card.findOne({ entityId })
-        if (!card) throw new Error()
+        const { user, card } = req
 
         const cardsList = await CardsList.findById(user.cardsListId)
-        if (!cardsList) throw new Error()
-
         const foldersList = await FoldersList.findById(user.foldersListId)
-        if (!foldersList) throw new Error()
 
         cardsList.cardsId = cardsList.cardsId.filter(cId => String(cId) !== String(card.id))
         await cardsList.save()

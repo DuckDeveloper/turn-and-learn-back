@@ -1,15 +1,34 @@
-const checkUserExists = require('./checkUserExists.middleware')
-const checkPasswordLengthValid = require('./checkPasswordLengthValid.middleware')
-const checkLoginLengthValid = require('./checkLoginLengthValid.middleware')
-const checkJwtValid = require('./checkJwtValid.middleware')
-const checkJwtExist = require('./checkJwtExist.middleware')
-const cancelAuthDueToJwtNotValid = require('./cancelAuthDueToJwtNotValid.middleware')
+const checkUserExists = require('./checkUserIsExists.middleware')
+const cancelResponseIfUserIsExists = require('./cancelResponseIfUserIsExists.middleware')
+const cancelResponseIfUserIsNotExists = require('./cancelResponseIfUserIsNotExists.middleware')
+
+const checkPasswordIsValid = require('./checkPasswordIsValid.middleware')
+const cancelResponseIfPasswordIsNotValid = require('./cancelResponseIfPasswordIsNotValid.middleware')
+
+const checkLoginIsValid = require('./checkLoginIsValid.middleware')
+const cancelResponseIfLoginIsNotValid = require('./cancelResponseIfLoginIsNotValid.middleware')
+
+const checkJwtIsValid = require('./checkJwtIsValid.middleware')
+const cancelResponseIfJwtIsNotValid = require('./cancelResponseIfJwtIsNotValid.middleware')
+
+const checkPasswordIsCorrect = require('./checkPasswordIsCorrect.middleware')
+const cancelReponseIfPasswordIsNotCorrect = require('./cancelReponseIfPasswordIsNotCorrect.middleware')
+
 
 module.exports = {
     checkUserExists,
-    checkPasswordLengthValid,
-    checkLoginLengthValid,
-    checkJwtValid,
-    checkJwtExist,
-    cancelAuthDueToJwtNotValid,
+    cancelResponseIfUserIsExists,
+    cancelResponseIfUserIsNotExists,
+
+    checkPasswordIsValid,
+    cancelResponseIfPasswordIsNotValid,
+
+    checkLoginIsValid,
+    cancelResponseIfLoginIsNotValid,
+
+    checkJwtIsValid,
+    cancelResponseIfJwtIsNotValid,
+
+    checkPasswordIsCorrect,
+    cancelReponseIfPasswordIsNotCorrect,
 }

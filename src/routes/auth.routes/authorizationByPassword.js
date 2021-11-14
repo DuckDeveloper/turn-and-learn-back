@@ -1,23 +1,11 @@
-const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const config = require('config')
 
-const messages = require('../messages.json')
+const messages = require('../../message.constants.json')
 
 module.exports = async (req, res) => {
     try {
-        const { user, userIsExist } = req
-        const { login, password } = req.body
-
-        if (!userIsExist) {
-            return res.status(400).json({ message: messages.error.USER_IS_NOT_EXIST })
-        }
-
-        const passwordsIsMatch = await bcrypt.compare(password, user.password)
-
-        if (!passwordsIsMatch) {
-            return res.status(400).json({ message: messages.error.INVALID_PASSWORD })
-        }
+        const { user } = req
 
         const token = jwt.sign(
             { userId: user.id },
@@ -25,7 +13,7 @@ module.exports = async (req, res) => {
             { expiresIn: '30d' },
         )
 
-        return res.status(200).json({ message: messages.success.SUCCESSFUL_AUTHORIZATION, token })
+        return res.status(200).json({ token })
     } catch(e) {
         return res.status(500).json({ message: messages.error.RANDOM_ERROR, e: e.message })
     }

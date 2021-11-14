@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const config = require('config')
 
-const messages = require('../messages.json')
+const messages = require('../../message.constants.json')
 
 module.exports = async (req, res) => {
     try {
