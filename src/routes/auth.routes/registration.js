@@ -1,4 +1,6 @@
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const config = require('config')
 
 const User = require('../../models/User')
 const Card = require('../../models/Card')
@@ -68,7 +70,18 @@ module.exports = async (req, res) => {
         })
         await user.save()
 
-        return res.status(200).json({})
+        const token = jwt.sign(
+            { userId: user.id },
+            config.get('JWT_SECRET'),
+            { expiresIn: '30d' },
+        )
+
+        return res.status(200).json({
+            token,
+            login: user.login,
+            theme: user.theme,
+            avatarUrl: user.avatar,
+        })
     } catch(e) {
         return res.status(500).json({ message: messages.error.RANDOM_ERROR, e: e.message })
     }
