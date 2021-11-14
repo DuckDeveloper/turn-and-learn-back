@@ -11,10 +11,8 @@ module.exports = async (req, res, next) => {
             throw new Error()
         }
 
-        req.loginIsValid = true
+        return next()
     } catch(e) {
-        req.loginIsValid = false
-    } finally {
-        next()
+        return res.status(400).json({})
     }
 }

@@ -1,5 +1,7 @@
 const User = require('../../models/User')
 
+const messages = require('../../message.constants.json')
+
 module.exports = async (req, res, next) => {
     try {
         const { login } = req.body
@@ -8,10 +10,8 @@ module.exports = async (req, res, next) => {
         if (!user) throw new Error()
 
         req.user = user
-        req.userIsExist = true
+        return next()
     } catch(e) {
-        req.userIsExist = false
-    } finally {
-        next()
+        return res.status(400).json({ message: messages.error.USER_IS_NOT_EXIST })
     }
 }

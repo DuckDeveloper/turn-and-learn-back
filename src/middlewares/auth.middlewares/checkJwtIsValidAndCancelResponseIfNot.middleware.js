@@ -14,10 +14,8 @@ module.exports = async (req, res, next) => {
         if (!user) throw new Error()
 
         req.user = user
-        req.tokenIsValid = true
+        return next()
     } catch(e) {
-        req.tokenIsValid = false
-    } finally {
-        next()
+        return res.status(401).json({})
     }
 }

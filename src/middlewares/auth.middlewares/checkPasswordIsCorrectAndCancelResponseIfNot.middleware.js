@@ -8,10 +8,8 @@ module.exports = async (req, res, next) => {
 
         if (!passwordsIsMatch) throw new Error()
 
-        req.passwordIsCorrect = true
+        return next()
     } catch(e) {
-        req.passwordIsCorrect = false
-    } finally {
-        next()
+        return res.status(400).json({})
     }
 }

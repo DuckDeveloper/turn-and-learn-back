@@ -4,10 +4,8 @@ module.exports = async (req, res, next) => {
 
         if (!en || !ru) throw new Error()
 
-        req.fieldIsEmpty = false
+        return next()
     } catch(e) {
-        req.fieldIsEmpty = true
-    } finally {
-        next()
+        return res.status(400).json({})
     }
 }

@@ -20,10 +20,8 @@ module.exports = async (req, res, next) => {
         }, true)
         if (!folderNameIsUnique) throw new Error()
 
-        req.folderNameIsValid = true
+        return next()
     } catch(e) {
-        req.folderNameIsValid = false
-    } finally {
-        next()
+        return res.status(400).json({})
     }
 }
