@@ -10,18 +10,15 @@ module.exports = async (req, res) => {
         const { ru, en } = req.body
 
         const cardsList = await CardsList.findById(user.cardsListId)
-        console.log(1)
+
         const card = new Card({
             entityId: await getUniqueIdForDbEntity(Card),
             ru,
             en,
         })
-        console.log(2)
         await card.save()
-        console.log(3)
 
-
-        cardsList.cardsId.push(card.id)
+        cardsList.cardsId = [card.id, ...cardsList.cardsId]
         await cardsList.save()
 
         return res.status(201).json({})
