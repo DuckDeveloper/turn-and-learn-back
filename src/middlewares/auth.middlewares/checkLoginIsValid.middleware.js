@@ -3,11 +3,17 @@ module.exports = async (req, res, next) => {
         const { login } = req.body
         req.body.login = login.trim()
 
-        if (login.trim().length < 3 || login.trim().length > 11) throw new Error()
+        if (
+            login.trim().length < 3
+            || login.trim().length > 11
+            || !login.trim()
+        ) {
+            throw new Error()
+        }
 
-        req.loginLengthIsValid = true
+        req.loginIsValid = true
     } catch(e) {
-        req.loginLengthIsValid = false
+        req.loginIsValid = false
     } finally {
         next()
     }

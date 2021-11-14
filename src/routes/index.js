@@ -1,6 +1,7 @@
 const auth = require('./auth.routes')
 const user = require('./user.routes')
 const card = require('./card.routes')
+const folder = require('./folder.routes')
 
 module.exports = [
     {
@@ -14,5 +15,9 @@ module.exports = [
     {
         route: card,
         path: '/api/card',
-    }
+    },
+    {
+        route: folder,
+        path: '/api/folder',
+    },
 ]

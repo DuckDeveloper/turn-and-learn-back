@@ -1,12 +1,12 @@
 const config = require('config')
 
-const messages = require('../messages.json')
+const messages = require('../../message.constants.json')
 
 module.exports = async (req, res) => {
     try {
         const { file, user } = req
 
-        const filepath = `${config.get('AVATARS_STORAGE')}/${file.filename}`
+        const filepath = `${ config.get('AVATARS_STORAGE') }/${ file.filename }`
 
         user.avatar = filepath
         await user.save()

@@ -1,11 +1,11 @@
 module.exports = async (req, res, next) => {
     try {
-        const { tokenIsValid } = req
+        const { passwordIsCorrect } = req
 
-        if (!tokenIsValid) throw new Error()
+        if (!passwordIsCorrect) throw new Error()
 
         return next()
     } catch(e) {
-        return res.status(401).json({})
+        return res.status(400).json({})
     }
 }

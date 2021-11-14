@@ -5,8 +5,8 @@ const User = require('../../models/User')
 
 module.exports = async (req, res, next) => {
     try {
-        const { token, tokenIsExist } = req
-        if (!tokenIsExist) throw new Error()
+        const token = req.headers.authorization.split(' ').pop()
+        if (!token) throw new Error()
 
         const { userId } = jwt.verify(token, config.get('JWT_SECRET'))
 

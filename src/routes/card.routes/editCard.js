@@ -1,13 +1,10 @@
-const Card = require('../../models/Card')
-
-const messages = require('../messages.json')
+const messages = require('../../message.constants.json')
 
 module.exports = async (req, res) => {
     try {
-        const { ru, en, entityId } = req.body
+        const { card } = req
+        const { ru, en } = req.body
 
-        const card = await Card.findOne({ entityId })
-        if (!card) throw new Error()
 
         card.ru = ru
         card.en = en

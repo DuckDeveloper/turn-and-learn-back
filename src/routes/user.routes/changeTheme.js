@@ -1,4 +1,4 @@
-const messages = require('../messages.json')
+const messages = require('../../message.constants.json')
 
 const oppositeThemes = {
     light: 'dark',
