@@ -9,6 +9,7 @@ const {
 const {
     checkCardIsExistAndCancelResponseIfNot,
     checkContentFieldIsEmptyAndCancelResponseIfNot,
+    checkUserHasAccessToCardAndCancelResponseIfNot,
 } = require('../../middlewares/card.middlewares')
 
 const router = Router()
@@ -28,6 +29,7 @@ router.put(
         checkJwtIsValidAndCancelResponseIfNot,
         checkContentFieldIsEmptyAndCancelResponseIfNot,
         checkCardIsExistAndCancelResponseIfNot,
+        checkUserHasAccessToCardAndCancelResponseIfNot,
     ],
     editCard,
 )
@@ -37,6 +39,7 @@ router.delete(
     [
         checkJwtIsValidAndCancelResponseIfNot,
         checkCardIsExistAndCancelResponseIfNot,
+        checkUserHasAccessToCardAndCancelResponseIfNot,
     ],
     deleteCard,
 )
