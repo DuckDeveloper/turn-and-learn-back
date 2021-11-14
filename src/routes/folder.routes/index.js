@@ -1,4 +1,5 @@
 const { Router } = require('express')
+const getAllUsersFolders = require('./getAllUsersFolders')
 const createFolder = require('./createFolder')
 const editFolderName = require('./editFolderName')
 const addCardsToFolder = require('./addCardsToFolder')
@@ -17,6 +18,14 @@ const {
 } = require('../../middlewares/folder.middlewares')
 
 const router = Router()
+
+router.get(
+    '/',
+    [
+        checkJwtIsValidAndCancelResponseIfNot,
+    ],
+    getAllUsersFolders,
+)
 
 router.post(
     '/',
