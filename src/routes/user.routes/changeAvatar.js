@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
 
         const filepath = `${ config.get('AVATARS_STORAGE') }/${ file.filename }`
 
-        user.avatar = filepath
+        user.avatarUrl = filepath
         await user.save()
 
         return res.status(200).json({})

@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
             token,
             login: user.login,
             theme: user.theme,
-            avatarUrl: user.avatar,
+            avatarUrl: user.avatarUrl,
         })
     } catch(e) {
         return res.status(500).json({ message: messages.error.RANDOM_ERROR, e: e.message })
