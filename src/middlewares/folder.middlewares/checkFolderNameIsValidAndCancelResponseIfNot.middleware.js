@@ -8,7 +8,13 @@ module.exports = async (req, res, next) => {
         const { user } = req
         const { folderName } = req.body
 
-        if (!folderName || folderName.length > MAX_FOLDER_NAME_LENGTH) throw new Error()
+        if (
+            typeof folderName !== 'string'
+            || !folderName
+            || folderName.length > MAX_FOLDER_NAME_LENGTH
+        ) {
+            throw new Error()
+        }
 
         const foldersList = await FoldersList.findById(user.foldersListId)
 
