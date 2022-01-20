@@ -7,14 +7,14 @@ const getUniqueIdForDbEntity = require('../../helpers/getUniqueIdForDbEntity')
 module.exports = async (req, res) => {
     try {
         const { user } = req
-        const { ru, en } = req.body
+        const { cardFirstSide, cardSecondSide } = req.body
 
         const cardsList = await CardsList.findById(user.cardsListId)
 
         const card = new Card({
             entityId: await getUniqueIdForDbEntity(Card),
-            ru,
-            en,
+            firstSide: cardFirstSide,
+            secondSide: cardSecondSide,
         })
         await card.save()
 

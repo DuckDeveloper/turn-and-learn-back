@@ -3,11 +3,11 @@ const messages = require('../../message.constants.json')
 module.exports = async (req, res) => {
     try {
         const { card } = req
-        const { ru, en } = req.body
+        const { cardFirstSide, cardSecondSide } = req.body
 
 
-        card.ru = ru
-        card.en = en
+        card.firstSide = cardFirstSide
+        card.secondSide = cardSecondSide
         await card.save()
 
         return res.status(202).json({})

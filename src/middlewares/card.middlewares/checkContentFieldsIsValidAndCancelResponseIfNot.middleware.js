@@ -1,10 +1,10 @@
 module.exports = async (req, res, next) => {
     try {
-        const { en, ru } = req.body
+        const { cardFirstSide, cardSecondSide } = req.body
 
-        req.body.en = en.trim()
-        req.body.ru = ru.trim()
-        if (!en || !ru) throw new Error()
+        req.body.cardFirstSide = cardFirstSide.trim()
+        req.body.cardSecondSide = cardSecondSide.trim()
+        if (!cardFirstSide || !cardSecondSide) throw new Error()
 
         return next()
     } catch(e) {
