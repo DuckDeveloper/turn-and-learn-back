@@ -1,7 +1,6 @@
 {
 	"name": "turn-and-learn-back",
 	"version": "1.0.0",
-	"description": "A web application for learning English for Russian speakers",
 	"main": "src/app.js",
 	"scripts": {
 		"start": "cross-env NODE_ENV=production node src/app.js",

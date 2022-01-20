@@ -11,7 +11,6 @@ const {
 } = require('../../middlewares/auth.middlewares')
 const {
     checkFolderNameIsValidAndCancelResponseIfNot,
-    checkFoldersAmountIsValidAndCancelResponseIfNot,
     checkFolderIsExistAndCancelResponseIfNot,
     checkUserHasAccessToFolderAndCancelResponseIfNot,
     filterCardsByValidCardsId,
@@ -48,7 +47,6 @@ router.post(
     '/',
     [
         checkJwtIsValidAndCancelResponseIfNot,
-        checkFoldersAmountIsValidAndCancelResponseIfNot,
         checkFolderNameIsValidAndCancelResponseIfNot,
     ],
     createFolder,
