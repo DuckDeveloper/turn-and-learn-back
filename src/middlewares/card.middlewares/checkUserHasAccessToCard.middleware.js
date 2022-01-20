@@ -2,6 +2,8 @@ const CardsList = require('../../models/CardsList')
 
 module.exports = async (req, res, next) => {
     try {
+        if (req.cancelOptions) return
+
         const { user, card } = req
 
         const cardsList = await CardsList.findById(user.cardsListId)
@@ -11,8 +13,10 @@ module.exports = async (req, res, next) => {
         if (!userHasAccess) throw new Error()
 
         req.cardsList = cardsList
-        return next()
+
     } catch(e) {
-        return res.status(403).json({})
+        req.cancelOptions = { responseStatusCode: 403, responseBody: {} }
+    } finally {
+        next()
     }
 }

@@ -2,6 +2,8 @@ const FoldersList = require('../../models/FoldersList')
 
 module.exports = async (req, res, next) => {
     try {
+        if (req.cancelOptions) return
+
         const { user, folder } = req
 
         const foldersList = await FoldersList.findById(user.foldersListId)
@@ -11,8 +13,10 @@ module.exports = async (req, res, next) => {
         if (!userHasAccess) throw new Error()
 
         req.foldersList = foldersList
-        return next()
+
     } catch(e) {
-        return res.status(403).json({})
+        req.cancelOptions = { responseStatusCode: 403, responseBody: {} }
+    } finally {
+        next()
     }
 }

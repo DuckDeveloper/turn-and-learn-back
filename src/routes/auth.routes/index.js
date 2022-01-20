@@ -4,12 +4,13 @@ const authorizationByPassword = require('./authorizationByPassword')
 const authorizationByJwt = require('./authorizationByJwt')
 
 const {
-    checkJwtIsValidAndCancelResponseIfNot,
-    checkUserIsExistsAndCancelResponseIfExists,
-    checkUserIsExistsAndCancelResponseIfNotExists,
-    checkLoginIsValidAndCancelResponseIfNot,
-    checkPasswordIsValidAndCancelResponseIfNot,
-    checkPasswordIsCorrectAndCancelResponseIfNot,
+    checkJwtIsValid,
+    checkUserIsNotExists,
+    checkUserIsExists,
+    checkUsernameIsValid,
+    checkPasswordIsValid,
+    checkPasswordIsCorrect,
+    cancelRequestIfNotValid,
 } = require('../../middlewares/auth.middlewares')
 
 const router = Router()
@@ -17,27 +18,30 @@ const router = Router()
 router.get(
     '/verification',
     [
-        checkJwtIsValidAndCancelResponseIfNot,
+        checkJwtIsValid,
     ],
+    cancelRequestIfNotValid,
     authorizationByJwt,
 )
 
 router.post(
     '/authorization',
     [
-        checkUserIsExistsAndCancelResponseIfNotExists,
-        checkPasswordIsCorrectAndCancelResponseIfNot,
+        checkUserIsExists,
+        checkPasswordIsCorrect,
     ],
+    cancelRequestIfNotValid,
     authorizationByPassword,
 )
 
 router.post(
     '/registration',
     [
-        checkLoginIsValidAndCancelResponseIfNot,
-        checkUserIsExistsAndCancelResponseIfExists,
-        checkPasswordIsValidAndCancelResponseIfNot,
+        checkUsernameIsValid,
+        checkUserIsNotExists,
+        checkPasswordIsValid,
     ],
+    cancelRequestIfNotValid,
     registration,
 )
 

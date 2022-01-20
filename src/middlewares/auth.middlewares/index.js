@@ -1,16 +1,19 @@
-const checkUserIsExistsAndCancelResponseIfNotExists = require('./checkUserIsExistsAndCancelResponseIfNotExists.middleware')
-const checkUserIsExistsAndCancelResponseIfExists = require('./checkUserIsExistsAndCancelResponseIfExists.middleware')
-const checkPasswordIsValidAndCancelResponseIfNot = require('./checkPasswordIsValidAndCancelResponseIfNot.middleware')
-const checkLoginIsValidAndCancelResponseIfNot = require('./checkLoginIsValidAndCancelResponseIfNot.middleware')
-const checkJwtIsValidAndCancelResponseIfNot = require('./checkJwtIsValidAndCancelResponseIfNot.middleware')
-const checkPasswordIsCorrectAndCancelResponseIfNot = require('./checkPasswordIsCorrectAndCancelResponseIfNot.middleware')
+const checkUserIsExists = require('./checkUserIsExists.middleware')
+const checkUserIsNotExists = require('./checkUserIsNotExists.middleware')
+const checkPasswordIsValid = require('./checkPasswordIsValid.middleware')
+const checkUsernameIsValid = require('./checkUsernameIsValid.middleware')
+const checkJwtIsValid = require('./checkJwtIsValid.middleware')
+const checkPasswordIsCorrect = require('./checkPasswordIsCorrect.middleware')
+
+const cancelRequestIfNotValid = require('../cancelRequestIfNotValid.middleware')
 
 
 module.exports = {
-    checkUserIsExistsAndCancelResponseIfNotExists,
-    checkUserIsExistsAndCancelResponseIfExists,
-    checkPasswordIsValidAndCancelResponseIfNot,
-    checkLoginIsValidAndCancelResponseIfNot,
-    checkJwtIsValidAndCancelResponseIfNot,
-    checkPasswordIsCorrectAndCancelResponseIfNot,
+    checkUserIsExists,
+    checkUserIsNotExists,
+    checkPasswordIsValid,
+    checkUsernameIsValid,
+    checkJwtIsValid,
+    checkPasswordIsCorrect,
+    cancelRequestIfNotValid,
 }

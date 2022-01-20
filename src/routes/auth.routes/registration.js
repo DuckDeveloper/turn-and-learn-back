@@ -21,7 +21,7 @@ const {
 
 module.exports = async (req, res) => {
     try {
-        const { login, password } = req.body
+        const { username, password } = req.body
 
         const hashedPassword = await bcrypt.hash(password, 12)
 
@@ -41,11 +41,11 @@ module.exports = async (req, res) => {
             foldersId: [],
         })
 
-        await Promise.all(cardsTemplate.map(async ({ en, ru }) => {
+        await Promise.all(cardsTemplate.map(async ({ firstSide, secondSide }) => {
             const card = new Card({
                 entityId: await getUniqueIdForDbEntity(Card),
-                en,
-                ru,
+                firstSide,
+                secondSide,
             })
             await card.save()
 
@@ -62,7 +62,7 @@ module.exports = async (req, res) => {
         await foldersList.save()
 
         const user = new User({
-            login,
+            username,
             password: hashedPassword,
             avatarUrl: avatarTemplate,
             cardsListId: cardsList.id,
@@ -70,15 +70,15 @@ module.exports = async (req, res) => {
         })
         await user.save()
 
-        const token = jwt.sign(
+        const authToken = jwt.sign(
             { userId: user.id },
             config.get('JWT_SECRET'),
             { expiresIn: '30d' },
         )
 
         return res.status(200).json({
-            token,
-            login: user.login,
+            authToken,
+            username: user.username,
             theme: user.theme,
             avatarUrl: user.avatarUrl,
         })

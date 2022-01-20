@@ -5,6 +5,8 @@ const { MAX_FOLDER_NAME_LENGTH } = require('../../project.config.json')
 
 module.exports = async (req, res, next) => {
     try {
+        if (req.cancelOptions) return
+
         const { user } = req
         const { folderName } = req.body
 
@@ -26,8 +28,9 @@ module.exports = async (req, res, next) => {
         }, true)
         if (!folderNameIsUnique) throw new Error()
 
-        return next()
     } catch(e) {
-        return res.status(400).json({})
+        req.cancelOptions = { responseStatusCode: 400, responseBody: {} }
+    } finally {
+        next()
     }
 }

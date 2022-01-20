@@ -3,6 +3,8 @@ const path = require('path')
 
 module.exports = async (req, res, next) => {
     try {
+        if (req.cancelOptions) return
+
         const { user, file: newFile } = req
 
         const avatarIsDefault = user.avatarUrl.split('/').some(dirName => dirName === 'default')

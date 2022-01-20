@@ -1,42 +1,42 @@
 module.exports = [
     {
-        en: '0',
-        ru: '0',
+        firstSide: '0',
+        secondSide: '0',
     },
     {
-        en: '1',
-        ru: '1',
+        firstSide: '1',
+        secondSide: '1',
     },
     {
-        en: '2',
-        ru: '2',
+        firstSide: '2',
+        secondSide: '2',
     },
     {
-        en: '3',
-        ru: '3',
+        firstSide: '3',
+        secondSide: '3',
     },
     {
-        en: '4',
-        ru: '4',
+        firstSide: '4',
+        secondSide: '4',
     },
     {
-        en: '5',
-        ru: '5',
+        firstSide: '5',
+        secondSide: '5',
     },
     {
-        en: '6',
-        ru: '6',
+        firstSide: '6',
+        secondSide: '6',
     },
     {
-        en: '7',
-        ru: '7',
+        firstSide: '7',
+        secondSide: '7',
     },
     {
-        en: '8',
-        ru: '8',
+        firstSide: '8',
+        secondSide: '8',
     },
     {
-        en: '9',
-        ru: '9',
+        firstSide: '9',
+        secondSide: '9',
     },
 ]

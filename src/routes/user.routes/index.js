@@ -1,7 +1,8 @@
 const { Router } = require('express')
 
 const {
-    checkJwtIsValidAndCancelResponseIfNot,
+    checkJwtIsValid,
+    cancelRequestIfNotValid,
 } = require('../../middlewares/auth.middlewares')
 const { uploadFile, deleteOldFile } = require('../../middlewares/file.middlewares')
 
@@ -13,18 +14,20 @@ const router = Router()
 router.put(
     '/theme',
     [
-        checkJwtIsValidAndCancelResponseIfNot,
+        checkJwtIsValid,
     ],
+    cancelRequestIfNotValid,
     changeTheme,
 )
 
 router.put(
     '/avatar',
     [
-        checkJwtIsValidAndCancelResponseIfNot,
+        checkJwtIsValid,
         uploadFile.single('image'),
         deleteOldFile,
     ],
+    cancelRequestIfNotValid,
     changeAvatar,
 )
 

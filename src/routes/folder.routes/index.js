@@ -7,18 +7,19 @@ const addCardsToFolder = require('./addCardsToFolder')
 const deleteFolder = require('./deleteFolder')
 
 const {
-    checkJwtIsValidAndCancelResponseIfNot,
+    checkJwtIsValid,
 } = require('../../middlewares/auth.middlewares')
 const {
-    checkFolderNameIsValidAndCancelResponseIfNot,
-    checkFolderIsExistAndCancelResponseIfNot,
-    checkUserHasAccessToFolderAndCancelResponseIfNot,
+    checkFolderNameIsValid,
+    checkFolderIsExist,
+    checkUserHasAccessToFolder,
     filterCardsByValidCardsId,
     filterCardsByUnique,
+    cancelRequestIfNotValid,
 } = require('../../middlewares/folder.middlewares')
 
 const {
-    checkLimitAndPageParamsIsValidAndCancelResponseIfNot,
+    checkLimitAndPageParamsIsValid,
 } = require('../../middlewares/card.middlewares')
 
 const router = Router()
@@ -27,61 +28,67 @@ const router = Router()
 router.get(
     '/',
     [
-        checkJwtIsValidAndCancelResponseIfNot,
+        checkJwtIsValid,
     ],
+    cancelRequestIfNotValid,
     getAllUsersFolders,
 )
 
 router.get(
     '/:id',
     [
-        checkJwtIsValidAndCancelResponseIfNot,
-        checkFolderIsExistAndCancelResponseIfNot,
-        checkUserHasAccessToFolderAndCancelResponseIfNot,
-        checkLimitAndPageParamsIsValidAndCancelResponseIfNot,
+        checkJwtIsValid,
+        checkFolderIsExist,
+        checkUserHasAccessToFolder,
+        checkLimitAndPageParamsIsValid,
     ],
+    cancelRequestIfNotValid,
     getFolderCardsByFolderId,
 )
 
 router.post(
     '/',
     [
-        checkJwtIsValidAndCancelResponseIfNot,
-        checkFolderNameIsValidAndCancelResponseIfNot,
+        checkJwtIsValid,
+        checkFolderNameIsValid,
     ],
+    cancelRequestIfNotValid,
     createFolder,
 )
 
 router.put(
     '/name',
     [
-        checkJwtIsValidAndCancelResponseIfNot,
-        checkFolderNameIsValidAndCancelResponseIfNot,
-        checkFolderIsExistAndCancelResponseIfNot,
-        checkUserHasAccessToFolderAndCancelResponseIfNot,
+        checkJwtIsValid,
+        checkFolderNameIsValid,
+        checkFolderIsExist,
+        checkUserHasAccessToFolder,
     ],
+    cancelRequestIfNotValid,
     editFolderName,
 )
 
 router.put(
     '/add',
     [
-        checkJwtIsValidAndCancelResponseIfNot,
-        checkFolderIsExistAndCancelResponseIfNot,
-        checkUserHasAccessToFolderAndCancelResponseIfNot,
+        checkJwtIsValid,
+        checkFolderIsExist,
+        checkUserHasAccessToFolder,
         filterCardsByValidCardsId,
         filterCardsByUnique,
     ],
+    cancelRequestIfNotValid,
     addCardsToFolder,
 )
 
 router.delete(
     '/',
     [
-        checkJwtIsValidAndCancelResponseIfNot,
-        checkFolderIsExistAndCancelResponseIfNot,
-        checkUserHasAccessToFolderAndCancelResponseIfNot,
+        checkJwtIsValid,
+        checkFolderIsExist,
+        checkUserHasAccessToFolder,
     ],
+    cancelRequestIfNotValid,
     deleteFolder,
 )
 
