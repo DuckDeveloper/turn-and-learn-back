@@ -1,5 +1,7 @@
 module.exports = async (req, res, next) => {
     try {
+        if (req.cancelOptions) return
+
         const { _limit: limitCardsOfPage, _page: pageNumber } = req.query
 
         if (limitCardsOfPage <= 0 || Number.isNaN(+limitCardsOfPage)) throw new Error()
@@ -7,8 +9,10 @@ module.exports = async (req, res, next) => {
 
         req.limitCardsOfPage = limitCardsOfPage
         req.pageNumber = pageNumber
-        return next()
+
     } catch(e) {
-        return res.status(400).json({})
+        req.cancelOptions = { responseStatusCode: 400, responseBody: {} }
+    } finally {
+        next()
     }
 }

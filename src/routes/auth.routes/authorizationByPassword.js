@@ -7,15 +7,15 @@ module.exports = async (req, res) => {
     try {
         const { user } = req
 
-        const token = jwt.sign(
+        const authToken = jwt.sign(
             { userId: user.id },
             config.get('JWT_SECRET'),
             { expiresIn: '30d' },
         )
 
         return res.status(200).json({
-            token,
-            login: user.login,
+            authToken,
+            username: user.username,
             theme: user.theme,
             avatarUrl: user.avatarUrl,
         })

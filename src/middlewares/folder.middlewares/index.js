@@ -1,13 +1,16 @@
-const checkFolderNameIsValidAndCancelResponseIfNot = require('./checkFolderNameIsValidAndCancelResponseIfNot.middleware')
-const checkFolderIsExistAndCancelResponseIfNot = require('./checkFolderIsExistAndCancelResponseIfNot.middleware')
-const checkUserHasAccessToFolderAndCancelResponseIfNot = require('./checkUserHasAccessToFolderAndCancelResponseIfNot.middleware')
+const checkFolderNameIsValid = require('./checkFolderNameIsValid.middleware')
+const checkFolderIsExist = require('./checkFolderIsExist.middleware')
+const checkUserHasAccessToFolder = require('./checkUserHasAccessToFolder.middleware')
 const filterCardsByValidCardsId = require('./filterCardsByValidCardsId.middleware')
 const filterCardsByUnique = require('./filterCardsByUnique.middleware')
 
+const cancelRequestIfNotValid = require('../cancelRequestIfNotValid.middleware')
+
 module.exports = {
-    checkFolderNameIsValidAndCancelResponseIfNot,
-    checkFolderIsExistAndCancelResponseIfNot,
-    checkUserHasAccessToFolderAndCancelResponseIfNot,
+    checkFolderNameIsValid,
+    checkFolderIsExist,
+    checkUserHasAccessToFolder,
     filterCardsByValidCardsId,
     filterCardsByUnique,
+    cancelRequestIfNotValid,
 }

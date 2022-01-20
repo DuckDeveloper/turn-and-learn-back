@@ -14,8 +14,8 @@ module.exports = async (req, res) => {
         )
 
         return res.status(200).json({
-            token: newToken,
-            login: user.login,
+            authToken: newToken,
+            username: user.username,
             theme: user.theme,
             avatarUrl: user.avatarUrl,
         })

@@ -5,13 +5,14 @@ const deleteCard = require('./deleteCard')
 const getCardsByLimit = require('./getCardsByLimit')
 
 const {
-    checkJwtIsValidAndCancelResponseIfNot,
+    checkJwtIsValid,
 } = require('../../middlewares/auth.middlewares')
 const {
-    checkCardIsExistAndCancelResponseIfNot,
-    checkContentFieldsIsValidAndCancelResponseIfNot,
-    checkUserHasAccessToCardAndCancelResponseIfNot,
-    checkLimitAndPageParamsIsValidAndCancelResponseIfNot,
+    checkCardIsExist,
+    checkContentFieldsIsValid,
+    checkUserHasAccessToCard,
+    checkLimitAndPageParamsIsValid,
+    cancelRequestIfNotValid,
 } = require('../../middlewares/card.middlewares')
 
 const router = Router()
@@ -19,39 +20,43 @@ const router = Router()
 router.get(
     '/',
     [
-        checkJwtIsValidAndCancelResponseIfNot,
-        checkLimitAndPageParamsIsValidAndCancelResponseIfNot,
+        checkJwtIsValid,
+        checkLimitAndPageParamsIsValid,
     ],
+    cancelRequestIfNotValid,
     getCardsByLimit,
 )
 
 router.post(
     '/',
     [
-        checkJwtIsValidAndCancelResponseIfNot,
-        checkContentFieldsIsValidAndCancelResponseIfNot,
+        checkJwtIsValid,
+        checkContentFieldsIsValid,
     ],
+    cancelRequestIfNotValid,
     createCard,
 )
 
 router.put(
     '/',
     [
-        checkJwtIsValidAndCancelResponseIfNot,
-        checkContentFieldsIsValidAndCancelResponseIfNot,
-        checkCardIsExistAndCancelResponseIfNot,
-        checkUserHasAccessToCardAndCancelResponseIfNot,
+        checkJwtIsValid,
+        checkContentFieldsIsValid,
+        checkCardIsExist,
+        checkUserHasAccessToCard,
     ],
+    cancelRequestIfNotValid,
     editCard,
 )
 
 router.delete(
     '/',
     [
-        checkJwtIsValidAndCancelResponseIfNot,
-        checkCardIsExistAndCancelResponseIfNot,
-        checkUserHasAccessToCardAndCancelResponseIfNot,
+        checkJwtIsValid,
+        checkCardIsExist,
+        checkUserHasAccessToCard,
     ],
+    cancelRequestIfNotValid,
     deleteCard,
 )
 

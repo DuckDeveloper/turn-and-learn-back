@@ -1,11 +1,14 @@
-const checkContentFieldsIsValidAndCancelResponseIfNot = require('./checkContentFieldsIsValidAndCancelResponseIfNot.middleware')
-const checkCardIsExistAndCancelResponseIfNot = require('./checkCardIsExistAndCancelResponseIfNot.middleware')
-const checkUserHasAccessToCardAndCancelResponseIfNot = require('./checkUserHasAccessToCardAndCancelResponseIfNot.middleware')
-const checkLimitAndPageParamsIsValidAndCancelResponseIfNot = require('./checkLimitAndPageParamsIsValidAndCancelResponseIfNot.middleware')
+const checkContentFieldsIsValid = require('./checkContentFieldsIsValid.middleware')
+const checkCardIsExist = require('./checkCardIsExist.middleware')
+const checkUserHasAccessToCard = require('./checkUserHasAccessToCard.middleware')
+const checkLimitAndPageParamsIsValid = require('./checkLimitAndPageParamsIsValid.middleware')
+
+const cancelRequestIfNotValid = require('../cancelRequestIfNotValid.middleware')
 
 module.exports = {
-    checkContentFieldsIsValidAndCancelResponseIfNot,
-    checkCardIsExistAndCancelResponseIfNot,
-    checkUserHasAccessToCardAndCancelResponseIfNot,
-    checkLimitAndPageParamsIsValidAndCancelResponseIfNot,
+    checkContentFieldsIsValid,
+    checkCardIsExist,
+    checkUserHasAccessToCard,
+    checkLimitAndPageParamsIsValid,
+    cancelRequestIfNotValid,
 }

@@ -1,17 +1,20 @@
 const bcrypt = require('bcryptjs')
 
-const messages = require('../../message.constants.json')
+const { error } = require('../../message.constants.json')
 
 module.exports = async (req, res, next) => {
     try {
+        if (req.cancelOptions) return
+
         const { user } = req
         const { password } = req.body
         const passwordsIsMatch = await bcrypt.compare(password, user.password)
 
         if (!passwordsIsMatch) throw new Error()
 
-        return next()
     } catch(e) {
-        return res.status(400).json({message: messages.error.INVALID_PASSWORD})
+        req.cancelOptions = { responseStatusCode: 400, responseBody: { message: error.INVALID_PASSWORD } }
+    } finally {
+        next()
     }
 }
