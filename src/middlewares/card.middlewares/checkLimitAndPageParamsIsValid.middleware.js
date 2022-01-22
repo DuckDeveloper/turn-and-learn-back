@@ -11,6 +11,7 @@ module.exports = async (req, res, next) => {
         req.pageNumber = pageNumber
 
     } catch(e) {
+        console.log(e)
         req.cancelOptions = { responseStatusCode: 400, responseBody: {} }
     } finally {
         next()
